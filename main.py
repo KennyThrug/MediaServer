@@ -20,9 +20,11 @@ def randomize():
 def getAllFiles():
     global path
     global listofFiles
+    listofFiles = []
     for root, dirs, files in os.walk(path):
         for file in files:
             listofFiles.append(os.path.join(root,file))
+    print(listofFiles)
 def getNextSong():
     global curSong
     global listofFiles
@@ -60,8 +62,6 @@ isPaused = True
 
 
 getAllFiles()
-
-print(listofFiles)
 
 #Play Button
 @app.route('/play/')
@@ -105,6 +105,12 @@ def skip():
     mixer.music.play()
     isPlaying = True
     isPaused = False
+    return render_template('MainControl.html')
+
+@app.route('/shuffle/')
+def shuffle():
+    getAllFiles()
+    randomize()
     return render_template('MainControl.html')
 
 def getShouldPause():
