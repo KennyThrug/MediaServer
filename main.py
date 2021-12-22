@@ -35,8 +35,8 @@ def getNextSong():
     elif(curSong < 0):
         curSong = len(listofFiles)
 
-    mp3 = mutagen.mp3.MP3(listofFiles[curSong])
-    pygame.mixer.init(frequency=mp3.info.sample_rate)
+    #mp3 = mutagen.mp3.MP3(listofFiles[curSong])
+    #pygame.mixer.init(frequency=mp3.info.sample_rate)
 
     return listofFiles[curSong]
 def getPrevSong():
@@ -47,9 +47,6 @@ def getPrevSong():
         curSong = 0
     elif(curSong < 0):
         curSong = len(listofFiles)-1
-
-    mp3 = mutagen.mp3.MP3(listofFiles[curSong])
-    pygame.mixer.init(frequency=mp3.info.sample_rate)
 
     return listofFiles[curSong]
 def hasSong():
