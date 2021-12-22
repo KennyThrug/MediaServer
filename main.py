@@ -10,7 +10,7 @@ import wave
 
 app = Flask(__name__)
 
-mixer.init()
+mixer.init(frequency=49100)
 
 curSong = -1
 listofFiles = []
@@ -129,7 +129,7 @@ def getShouldPause():
     return False
 
 def runApp():
-    app.run(debug=True,host="0.0.0.0")
+    app.run(debug=False,host="0.0.0.0")
 def checkForNextSong():
     while(True):
         if(getShouldPause()):
