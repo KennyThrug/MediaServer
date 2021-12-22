@@ -1,10 +1,11 @@
 from flask import Flask, render_template
-import pygame
+import pygame, mutagen.mp3
 from pygame import mixer
 import os
 from tkinter import *
 import random
 import threading
+import wave
 
 
 app = Flask(__name__)
@@ -33,6 +34,10 @@ def getNextSong():
         curSong = 0
     elif(curSong < 0):
         curSong = len(listofFiles)
+
+    mp3 = mutagen.mp3.MP3(listofFiles[curSong])
+    pygame.mixer.init(frequency=mp3.info.sample_rate)
+
     return listofFiles[curSong]
 def getPrevSong():
     global curSong
@@ -42,6 +47,10 @@ def getPrevSong():
         curSong = 0
     elif(curSong < 0):
         curSong = len(listofFiles)-1
+
+    mp3 = mutagen.mp3.MP3(listofFiles[curSong])
+    pygame.mixer.init(frequency=mp3.info.sample_rate)
+
     return listofFiles[curSong]
 def hasSong():
     global listofFiles
